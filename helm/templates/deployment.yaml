@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "whenwejdene.fullname" . }}
+  name: {{ include "whenolydays.fullname" . }}
   labels:
-    {{- include "whenwejdene.labels" . | nindent 4 }}
+    {{- include "whenolydays.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "whenwejdene.selectorLabels" . | nindent 6 }}
+      {{- include "whenolydays.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,7 +18,8 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "whenwejdene.labels" . | nindent 8 }}
+        rollme: {{ randAlphaNum 5 | quote }} # TODO: remove when tags are available
+        {{- include "whenolydays.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -27,7 +28,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "whenwejdene.serviceAccountName" . }}
+      serviceAccountName: {{ include "whenolydays.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
