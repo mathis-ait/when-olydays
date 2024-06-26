@@ -2,7 +2,7 @@ import { Bodies, Common, Engine, World } from 'matter-js';
 import { useEffect, useRef, useState } from 'react';
 import { FallingAlbums } from './FallingAlbums';
 
-const FINAL_DATE = new Date(2024, 9, 10);
+const FINAL_DATE = new Date(2024, 10, 9);
 
 function App() {
   const engineRef = useRef<Engine>();
