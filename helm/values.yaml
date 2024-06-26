@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/mathis-ait/when-wejdene
+  repository: ghcr.io/mathis-ait/when-olydays
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
