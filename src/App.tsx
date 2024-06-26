@@ -2,7 +2,7 @@ import { Bodies, Common, Engine, World } from 'matter-js';
 import { useEffect, useRef, useState } from 'react';
 import { FallingAlbums } from './FallingAlbums';
 
-const FINAL_DATE = new Date(2024, 6, 6);
+const FINAL_DATE = new Date(2024, 9, 10);
 
 function App() {
   const engineRef = useRef<Engine>();
@@ -26,15 +26,34 @@ function App() {
   }, []);
 
   const handleAddAlbum = () => {
-    if (!engineRef.current) return;
+    const sprites = Array.from({ length: 4 }, (_, i) => `/images/${(i + 1).toString()}.jpeg`);
+    
+    const randomIndex = Math.floor(Common.random(0, sprites.length));
+    const texture = sprites[randomIndex] ?? '';
 
-    World.add(
-      engineRef.current.world,
-      Bodies.rectangle(Common.random(0, window.innerWidth), 0, 120, 120, {
-        render: { sprite: { texture: '/16.jpg', xScale: 0.3, yScale: 0.3 } },
-        angle: Common.random(0, 3),
-      }),
-    );
+    const img = new Image();
+    img.src = texture;
+
+    img.onload = () => {
+      if (!engineRef.current) return;
+      const album = Bodies.rectangle(
+        Common.random(0, window.innerWidth),
+        0,
+        img.width * 0.1,
+        img.height * 0.1,
+        {
+          render: {
+            sprite: {
+              texture,
+              xScale: 0.1,
+              yScale: 0.1,
+            },
+          },
+        }
+      );
+
+      World.add(engineRef.current.world, album);
+    };
   };
 
   const handleButtonClick = () => {
@@ -47,9 +66,9 @@ function App() {
       <FallingAlbums buttonRef={buttonRef} engineRef={engineRef} />
       <div className="h-full w-full flex flex-col items-center justify-center gap-4">
         <h1 className="text-4xl">
-          When{' '}
+          C&apos;est quand les{' '}
           <u>
-            <b>WEJDENE</b>
+            <b>VACANCES</b>
           </u>{' '}
           ?
         </h1>
@@ -58,15 +77,15 @@ function App() {
         <p>{Math.floor(dateDiff / (1024 * 60))} minutes</p>
         <p>{Math.floor(dateDiff / 1024)} secondes</p>
         <button ref={buttonRef} onClick={handleButtonClick} className="py-3 px-4 mt-4 top-[60%] bg-slate-700 rounded absolute">
-          Donne 😢
+          VITE JPP ! 😢
         </button>
       </div>
-      {clickCount > 10 && (
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-800">
-          <img src="/feuneu.jpeg" />
+      {/* {clickCount > 10 && (
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          <img src="/nono.jpg" className='w-80'/>
           <p className="text-3xl text-center">Sois patient mon reuf</p>
         </div>
-      )}
+      )} */}
     </>
   );
 }
