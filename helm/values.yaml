@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/sharkezz/when-wejdene
+  repository: ghcr.io/mathis-ait/when-wejdene
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -51,14 +51,14 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: when-wejdene.tristandida.fr
+    - host: when-olydays.mathis-aitbraham.fr
       paths:
         - path: /
           pathType: ImplementationSpecific
   tls:
-    - secretName: tristandida-cert
+    - secretName: mathisaitbraham-cert
       hosts:
-        - when-wejdene.tristandida.fr
+        - when-olydays.mathis-aitbraham.fr
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

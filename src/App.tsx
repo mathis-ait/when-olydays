@@ -80,12 +80,12 @@ function App() {
           VITE JPP ! 😢
         </button>
       </div>
-      {/* {clickCount > 10 && (
+      {clickCount > 10 && (
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <img src="/nono.jpg" className='w-80'/>
           <p className="text-3xl text-center">Sois patient mon reuf</p>
         </div>
-      )} */}
+      )}
     </>
   );
 }

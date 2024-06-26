@@ -27,7 +27,7 @@ jobs:
         target: runner
         push: true
         tags: |
-          ghcr.io/sharkezz/when-wejdene:latest
+          ghcr.io/mathis-ait/when-olydays:latest
 
   deploy:
     runs-on: ubuntu-latest
@@ -50,4 +50,4 @@ jobs:
           --atomic
           --create-namespace
           --set-string image.tag=latest
-          --namespace when-wejdene when-wejdene helm
+          --namespace when-olydays when-olydays helm
